@@ -32,7 +32,7 @@ of the face points with the points saved in the database.
 The query returns the id of the face with the closest array of points to the points of the queried face.
 
 ### 🛠️ Prerequisites
-To run this demo it is necessary have [DOCKER](https://www.docker.com/) and [DOCKER COMPOSE](https://docs.docker.com/compose/) installed on your machine.
+To run this demo it is necessary [GIT](https://git-scm.com/downloads) and [DOCKER](https://www.docker.com/) / [DOCKER COMPOSE](https://docs.docker.com/compose/) installed on your machine.
 
 If you don't have docker, just follow the step by step according to your operating system at this [LINK](https://docs.docker.com/get-docker/).
 
@@ -41,13 +41,14 @@ If you don't have docker, just follow the step by step according to your operati
 Clone repository
 
 ```
-git clone XXXX
+git clone https://github.com/psilva1982/face_api.git
 ```
 
 
 Starting the system
 ```
- docker compose -f 'docker/dev/docker-compose.yml' up
+ cd face_api
+ docker compose -f 'docker/dev/docker-compose.yml' up -d
 ```
 
 **⚠️ ATTENTION**
@@ -60,7 +61,7 @@ an average of 90 minutes** , so if you choose to go this route while the images 
 processed, you can walk away a bit, grab a coffee* ☕ *, etc... On the other hand, if you choose not to
 import the dataset there is an option in django-admin to register and train your personal images for testing.*
 
-Extract and loading the LFW dataset into database.
+Download, extract and loading the LFW dataset into database.
 ```
 docker compose -f 'docker/dev/docker-compose.yml' run --rm django bash -c "python src/manage.py load_lfw"
 ```
@@ -106,4 +107,4 @@ the emails received.
 
 ### ✏️ Notes
 
-This project is for educational purposes only and must not be used under any circumstances for other purposes.
+This project is for educational purposes only.

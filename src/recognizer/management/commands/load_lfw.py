@@ -14,7 +14,6 @@ class Command(BaseCommand):
     help = "Download and load LFW dataset into database"
 
     def handle(self, *args, **kwargs):
-
         self.stdout.write(self.style.WARNING("Download LFW dataset from internet..."))
         remote_url = 'https://vis-www.cs.umass.edu/lfw/lfw.tgz'
         dataset_file_path = f"{settings.BASE_DIR}/dataset/lfw.tgz"
@@ -51,5 +50,10 @@ class Command(BaseCommand):
                         ),
                     )
 
-        self.stdout.write(self.style.SUCCESS("Load of people completed successfully!"))
+        self.stdout.write(
+            self.style.WARNING("Removing temp files, please wait...")
+        )
         shutil.rmtree(folder)
+        os.remove(dataset_file_path)
+
+        self.stdout.write(self.style.SUCCESS("Load of people completed successfully!"))
