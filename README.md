@@ -48,7 +48,7 @@ git clone https://github.com/psilva1982/face_api.git
 Starting the system
 ```
  cd face_api
- docker compose -f 'docker/dev/docker-compose.yml' up -d
+ docker compose -f 'docker/dev/docker-compose.yml' up
 ```
 
 **⚠️ ATTENTION**
