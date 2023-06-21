@@ -1,0 +1,97 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+{% block extrahead %}
+    {{ block.super }}
+    <script src="{% url 'admin:jsi18n' %}"></script>
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/recognizer.css" %}">
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}
+    {{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form
+{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label='recognizer' %}">Recognizer</a>
+&rsaquo; <a href="{% url 'admin:recognizer_person_changelist' %}">Persons</a>
+&rsaquo; Search Person
+</div>
+{% endblock %}
+{% endif %}
+
+{% block content %}
+    <div id="content-main">
+        <h1>Upload photo file</h1>
+        <ul class="object-tools">
+            <li>
+                <a class="addlink" href="{% url 'admin:recognizer_person_changelist' %}">Back</a>
+            </li>
+        </ul>
+
+        <div style="margin-top: 40px;">
+            <div class="holder">
+                <img id="imgPreview" src="#" alt="pic" />
+                <input type="hidden" id="submitedFile" value="{% if submited_photo %}{{submited_photo|safe}}{% endif %}">
+            </div>
+            <form id="search-face-form" action="." method="post" enctype="multipart/form-data" style="margin-top: 20px">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                {% if results %}
+                    <div>
+                        <table style="width: 100%; margin-top: 40px;">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 150px">THUMB</th>
+                                    <th scope="col">Person</th>
+                                    <th scope="col" style="text-align: end">Accuracy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in results %}
+                                    <tr>
+                                        {% with person=item|get_item:"person" %}
+                                            <td>
+                                                <img src="{{ person.profile_image.file.url|safe }}" alt="{{ person }}" height="120">
+                                            </td>
+                                            <td>
+                                                <div class="result-person">
+                                                    <a href="{% url 'admin:recognizer_person_change' person.id %}">{{ person }}</a>
+                                                    <p>{{ person.database }}</p>
+                                                </div>
+                                            </td>
+                                            <td style="text-align: end">
+                                                {{ item|get_item:"accuracy" }}%
+                                            </td>
+                                        {% endwith %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="submit-row" style="text-align: left; margin-top: 40px; display: flex; align-items: center">
+                    <input id="search-face-button" type="submit" value="Search">
+                    <img id="loading" src="{% static 'img/loading.gif' %}" alt="Loading..." height="40"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/recognizer.js' %}"></script>
+{% endblock content %}

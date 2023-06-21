@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+    db:
+        container_name: face_postgres
+        image: vitalyven/docker-postgresql-large-cube:13.1-alpine
+        env_file:
+            - ../../.envs/.postgres
+        volumes:
+            - face_postgresql_data:/var/lib/postgresql/data
+        ports:
+          - "5432:5432"
+        command: -p 5432
+        restart: "on-failure"
+
+    django:
+        container_name: face_django
+        image: face_local_django
+        build:
+            context: ../../
+            dockerfile: docker/dev/django/Dockerfile
+        command: sh -c "docker/dev/scripts/wait_db.sh db:5432 -- ./docker/dev/django/entrypoint.sh"
+        volumes:
+            - ../../.:/face_api
+        env_file:
+            - ../../.envs/.postgres
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+            - mailhog
+        restart: "unless-stopped"
+
+    mailhog:
+        image: mailhog/mailhog:v1.0.0
+        container_name: mailhog
+        ports:
+            - "8025:8025"
+            - "1025:1025"
+
+volumes:
+    face_postgresql_data:

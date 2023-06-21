@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "face-api"
+version = "0.1.0"
+description = ""
+authors = ["Paulo Silva"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dj-database-url = "^1.3.0"
+djangorestframework = "^3.14.0"
+django = "^4.2"
+dj-rest-auth = "^3.0.0"
+django-allauth = "^0.54.0"
+python-decouple = "^3.8"
+django-filter = "^23.1"
+drf-yasg = "^1.21.5"
+django-cors-headers = "^3.14.0"
+djangorestframework-simplejwt = "^5.2.2"
+pillow = "^9.5.0"
+psycopg2 = "^2.9.6"
+dlib = "^19.24.1"
+pandas = "^2.0.0"
+numpy = "^1.24.3"
+opencv-contrib-python = "^4.7.0.72"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

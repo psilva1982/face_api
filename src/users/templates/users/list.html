@@ -1,0 +1,85 @@
+{% extends 'pages/list.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block list_title %}
+Users
+{% endblock %}
+
+{% block list_subtitle %}
+List
+{% endblock %}
+
+{% block list_actions %}
+{% endblock %}
+
+{% block list_header %}
+{% crispy filter.form filter.helper %}
+
+{% endblock %}
+
+{% block list_table %}
+      <table class="table" aria-describedby="Database list">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>E-mail</th>
+            <th>Name</th>
+            <th>Admin</th>
+            <th>Staff</th>
+            <th>Joined</th>
+            <th>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="table-data"></tbody>
+
+        {% for user in user_list %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.name|default:"-" }}</td>
+            <td class="text-center">
+              {% if user.is_superuser %}
+              <i data-feather="check-circle" class="text-success"></i>
+              {% else %}
+              <i data-feather="x-circle" class="text-danger"></i>
+              {% endif %}
+            </td>
+            <td class="text-center">
+              {% if user.is_staff %}
+              <i data-feather="check-circle" class="text-success"></i>
+              {% else %}
+              <i data-feather="x-circle" class="text-danger"></i>
+              {% endif %}
+            </td>
+            <td>{{ user.date_joined }}</td>
+            <td>
+              <a href="{% url 'user-edit' user.uuid %}" class="card-link">
+                <i data-feather="edit-2" ></i>
+              </a>
+              <a href="#" class="card-link">
+                <i data-feather="trash-2" class="text-danger"></i>
+              </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+      </table>
+{% endblock %}
+
+{% block modal_content %}
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+  // Document ready
+  $(function() {
+    hideListLoader();
+  });
+</script>
+
+{% endblock%}

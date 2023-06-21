@@ -1,0 +1,9 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_DB=face_db
+POSTGRES_USER=hnHfiqiXPkBhBrMTfmWkoPJmryrUneTs
+POSTGRES_PASSWORD=J6IJ2PLsSZCUeSQuS9cDFsTLDlesOmREtdhjSFQkbrehIVngrGgVFiHcBOZFNxai
+POSTGRES_ENGINE=django.db.backends.postgresql
+POSTGRES_SSL_MODE=disable

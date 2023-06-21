@@ -1,0 +1,32 @@
+.holder {
+    height: 300px;
+    width: 300px;
+    border: 2px solid black;
+}
+.holder img {
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    min-height: 300px;
+}
+input[type="file"] {
+    margin-top: 5px;
+}
+.heading {
+    font-family: Montserrat;
+    font-size: 45px;
+    color: green;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.result-person {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-person a {
+    font-weight: bold;
+}
