@@ -1,6 +1,6 @@
 # 🧰 Dlib facial recognition system
 
-This is a DEMO system that uses Django, PostgreSQL, OpenCV and Dlib to perform facial recognition.
+This is a [DEMO](demo.gif) system that uses Django, PostgreSQL, OpenCV and Dlib to perform facial recognition.
 
 The dataset used for the tests is the [LFW](http://vis-www.cs.umass.edu/lfw/)
 
@@ -91,6 +91,8 @@ in http://localhost:8000/admin/recognizer/person/  and choose the action
 **Test facial recognition**
 
 On persons list http://localhost:8000/admin/recognizer/person/  click in **facial recognition** button on top right corner
+
+See the [result](demo.gif) 
 
  😎 Enjoy !!!
 
