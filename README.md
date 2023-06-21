@@ -55,7 +55,7 @@ Starting the system
 - *The container image creation step takes some time.* **(~5 minutes** 😴)
 
 - *If you wish, it is not necessary to load and train images from the LFW
-dataset. The training is a **very slow process**, there are more than 5000 images to extract
+dataset. The training is a **very slow process**, there are more than 13000 images to extract
 the points matrix and save it in the database. On my personal computer, this **process takes
 an average of 90 minutes** , so if you choose to go this route while the images are being
 processed, you can walk away a bit, grab a coffee* ☕ *, etc... On the other hand, if you choose not to
