@@ -20,8 +20,7 @@ RUN apt-get update && apt-get -y install git wget libgl1-mesa-glx libglib2.0-0 l
 
 # create folder
 RUN mkdir -p /face_api
-RUN mkdir -p /face_api/src/media/photos
-RUN mkdir -p /face_api/src/media/check
+
 
 # Set work directory
 WORKDIR /face_api
