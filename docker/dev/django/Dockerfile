@@ -36,6 +36,7 @@ RUN bzip2 -d /face_api/src/recognizer/dlib/dlib_face_recognition_resnet_model_v1
 RUN bzip2 -d /face_api/src/recognizer/dlib/shape_predictor_68_face_landmarks.dat.bz2
 
 # Install dependencies
+WORKDIR /face_api
 RUN python -m pip install --upgrade pip
 RUN pip install poetry
 RUN poetry config installer.max-workers 10
