@@ -29,11 +29,12 @@ WORKDIR /face_api
 COPY . /face_api/
 
 # Get Dlib files
-RUN wget -O /face_api/src/recognizer/dlib/dlib_face_recognition_resnet_model_v1.dat.bz2 http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2
-RUN wget -O /face_api/src/recognizer/dlib/shape_predictor_68_face_landmarks.dat.bz2 http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
+WORKDIR /face_api/src/recognizer/dlib/
+RUN wget dlib_face_recognition_resnet_model_v1.dat.bz2 http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2
+RUN wget shape_predictor_68_face_landmarks.dat.bz2 http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
 
-RUN bzip2 -d /face_api/src/recognizer/dlib/dlib_face_recognition_resnet_model_v1.dat.bz2
-RUN bzip2 -d /face_api/src/recognizer/dlib/shape_predictor_68_face_landmarks.dat.bz2
+RUN bzip2 dlib_face_recognition_resnet_model_v1.dat.bz2
+RUN bzip2 shape_predictor_68_face_landmarks.dat.bz2
 
 # Install dependencies
 WORKDIR /face_api
