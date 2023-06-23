@@ -21,6 +21,7 @@ services:
         command: sh -c "docker/dev/scripts/wait_db.sh db:5432 -- ./docker/dev/django/entrypoint.sh"
         volumes:
             - ../../.:/face_api
+            - django_face_dlib_files:/face_api/src/recognizer/dlib
         env_file:
             - ../../.envs/.postgres
         ports:
@@ -39,3 +40,4 @@ services:
 
 volumes:
     face_postgresql_data:
+    django_face_dlib_files:
