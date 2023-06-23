@@ -28,16 +28,16 @@ WORKDIR /face_api
 # Copy project
 COPY . /face_api/
 
-# Install dependencies
-RUN python -m pip install --upgrade pip
-RUN pip install poetry
-RUN poetry config installer.max-workers 10
-RUN poetry config virtualenvs.create false
-RUN poetry install --ansi -vvv
-
 # Get Dlib files
 RUN wget -O /face_api/src/recognizer/dlib/dlib_face_recognition_resnet_model_v1.dat.bz2 http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2
 RUN wget -O /face_api/src/recognizer/dlib/shape_predictor_68_face_landmarks.dat.bz2 http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
 
 RUN bzip2 -d /face_api/src/recognizer/dlib/dlib_face_recognition_resnet_model_v1.dat.bz2
 RUN bzip2 -d /face_api/src/recognizer/dlib/shape_predictor_68_face_landmarks.dat.bz2
+
+# Install dependencies
+RUN python -m pip install --upgrade pip
+RUN pip install poetry
+RUN poetry config installer.max-workers 10
+RUN poetry config virtualenvs.create false
+RUN poetry install --ansi -vvv
