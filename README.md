@@ -1,5 +1,7 @@
 # 🧰 Dlib facial recognition system
 
+![demo](demo.gif)
+
 This is a [DEMO](demo.gif) system that uses Django, PostgreSQL, OpenCV and Dlib to perform facial recognition.
 
 The dataset used for the tests is the [LFW](http://vis-www.cs.umass.edu/lfw/)
